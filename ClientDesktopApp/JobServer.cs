@@ -1,4 +1,7 @@
-﻿using ClientDesktopApp;
+﻿// Name: Patick Jong
+// Class: JobServer.cs
+
+using ClientDesktopApp;
 using Library_DLL;
 using System.Linq;
 

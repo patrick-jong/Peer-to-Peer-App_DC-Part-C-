@@ -1,4 +1,7 @@
-﻿using Library_DLL;
+﻿// Name: Patrick Jong
+// Class: ClientList.cs
+
+using Library_DLL;
 
 namespace Web_Server.Models
 {

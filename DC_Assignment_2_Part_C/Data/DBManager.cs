@@ -1,4 +1,7 @@
-﻿using Library_DLL;
+﻿// Name: Patrick Jong
+// Class: DBManager.cs
+
+using Library_DLL;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;

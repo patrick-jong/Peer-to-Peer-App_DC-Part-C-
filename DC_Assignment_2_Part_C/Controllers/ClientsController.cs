@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Name: Patrick Jong
+// Class: ClientsController.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,10 +28,6 @@ namespace Web_Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClient()
         {
-            if (_context.Client == null)
-            {
-                return NotFound();
-            }
             return await _context.Client.ToListAsync();
         }
 
@@ -36,10 +35,6 @@ namespace Web_Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            if (_context.Client == null)
-            {
-                return NotFound();
-            }
             var client = await _context.Client.FindAsync(id);
 
             if (client == null)
@@ -54,10 +49,6 @@ namespace Web_Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
-            if (_context.Client == null)
-            {
-                return Problem("DBManager.Client entity set is null.");
-            }
             _context.Client.Add(client);
             await _context.SaveChangesAsync();
 
@@ -81,7 +72,7 @@ namespace Web_Server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClientExists(id))
+                if (!await ClientExists(id)) 
                 {
                     return NotFound();
                 }
@@ -94,14 +85,10 @@ namespace Web_Server.Controllers
             return NoContent();
         }
 
-        // DELETE: api/clients/5
+        // DELETE: api/clients/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(int id)
         {
-            if (_context.Client == null)
-            {
-                return NotFound();
-            }
             var client = await _context.Client.FindAsync(id);
             if (client == null)
             {
@@ -114,9 +101,9 @@ namespace Web_Server.Controllers
             return NoContent();
         }
 
-        private bool ClientExists(int id)
+        private async Task<bool> ClientExists(int id)
         {
-            return (_context.Client?.Any(e => e.ClientId == id)).GetValueOrDefault();
+            return await _context.Client.AnyAsync(e => e.ClientId == id);
         }
     }
 }

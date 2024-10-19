@@ -1,4 +1,7 @@
-﻿using Library_DLL;
+﻿// Name: Patick Jong
+// Class: JobList.cs
+
+using Library_DLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
