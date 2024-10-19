@@ -1,0 +1,59 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="container" style="padding: 20px">
+	<div class="row justify-content-center">
+		<div class="col text-center">
+			<h1 class="display-2">Dashboard</h1>
+		</div>
+	</div>
+</div>
+
+<table class="table table-striped">
+	<thead class="table-light">
+		<tr>
+			<th style="width: 150px;" scope="col">IP Address</th>
+			<th style="width: 150px;" scope="col">Port Number</th>
+			<th style="width: 150px;" scope="col">Status</th>
+			<th style="width: 150px;" scope="col">Jobs Completed</th>
+		</tr>
+	</thead>
+	<tbody id="tableData"></tbody>
+</table>
+
+<script>
+	function getData() {
+
+		document.getElementById("tableData").innerHTML = '';
+
+		let options = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+		}
+
+		let fetchRes = fetch(
+			"http://localhost:5000/api/clients",
+			options);
+		fetchRes.then(res =>
+			res.json()).then(d => {
+				d.forEach(i => {
+					console.log(i)
+					var tableRow = ` <tr>
+											<th scope="row">${i.ipAddress}</th>
+											<td>${i.port}</td>
+											<td>${i.status}</td>
+											<td>${i.jobsCompleted}</td>
+										 </tr> `;
+
+					document.getElementById("tableData").innerHTML += tableRow;
+				})
+			})
+	}
+
+	// Refreshing
+	setInterval(getData, 2000)
+	getData()
+</script>

@@ -1,0 +1,49 @@
+﻿<Window x:Class="ClientDesktopApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientDesktopApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closing="MainWindow_OnClosing">
+    <Window.Resources>
+        <Style x:Key="LineHeightStyle" TargetType="Paragraph">
+            <Setter Property="LineHeight" Value="1" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border x:Name="RegPanel" Visibility="Visible">
+            <Grid>
+                <Label Content="Port Number Registration" HorizontalAlignment="Left" Margin="243,148,0,0" VerticalAlignment="Top" Width="202" FontWeight="Bold"/>
+                <TextBox x:Name="PortTB" HorizontalAlignment="Left" Margin="376,198,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top" Width="215" Height="20"/>
+                <Button x:Name="RegBtn" Content="Register" HorizontalAlignment="Left" Margin="501,245,0,0" VerticalAlignment="Top" Width="90" Click="RegBtn_Click"/>
+                <Label Content="Enter the Port Number:" HorizontalAlignment="Left" Margin="243,194,0,0" VerticalAlignment="Top" Width="149"/>
+
+            </Grid>
+        </Border>
+
+
+        <Border x:Name="MainPanel" Visibility="Hidden">
+            <Grid>
+                <RichTextBox x:Name="ScriptTB" HorizontalAlignment="Left" Margin="58,41,0,0" VerticalAlignment="Top" Width="488" Height="181">
+                    <FlowDocument>
+                        <Paragraph Style="{StaticResource LineHeightStyle}" />
+                    </FlowDocument>
+                </RichTextBox>
+                <RichTextBox x:Name="ResultTB" HorizontalAlignment="Left" Margin="58,267,0,0" VerticalAlignment="Top" Width="488" Height="131" Background="DarkGray" Foreground="White">
+                    <FlowDocument>
+                    </FlowDocument>
+                </RichTextBox>
+                <Button x:Name="PostBtn" Content="Post" HorizontalAlignment="Left" Margin="671,72,0,0" VerticalAlignment="Top" Width="60" Click="PostBtn_Click"/>
+                <Button x:Name="UploadBtn" Content="Upload File" HorizontalAlignment="Left" Margin="572,72,0,0" VerticalAlignment="Top" Width="78" Click="UploadBtn_Click" RenderTransformOrigin="6.308,-3.705"/>
+                <Label Content="Job Status: " HorizontalAlignment="Left" Margin="566,111,0,0" VerticalAlignment="Top"/>
+                <Label Name="ProgressLbl" Content="Idle" HorizontalAlignment="Left" Margin="636,111,0,0" VerticalAlignment="Top"/>
+                <Label Content="Total Jobs Completed: " HorizontalAlignment="Left" Margin="566,137,0,0" VerticalAlignment="Top"/>
+                <Label Name="TotalLbl" Content="0" HorizontalAlignment="Left" Margin="701,137,0,0" VerticalAlignment="Top"/>
+                <Label Content="Enter Python Script here:" HorizontalAlignment="Left" Margin="58,15,0,0" VerticalAlignment="Top" FontWeight="DemiBold"/>
+                <Label Content="Result:" HorizontalAlignment="Left" Margin="58,241,0,0" VerticalAlignment="Top" FontWeight="DemiBold"/>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
